@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>UseCase_Messages_3</title>
+        <style type="text/css">
+            .error { 
+                color: red;
+            }
+            .globalerror {
+                color: red; font-size: 25px; font-weight: bold;
+            }
+            .success { 
+                color: green; font-size: 25px; font-weight: bold; 
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form id="registrationForm">
+            <h:outputText styleClass="globalerror" value="Sorry, you have some validation issues !" 
+                          rendered="#{facesContext.validationFailed and facesContext.postback}" />
+            <h:panelGrid columns="3">
+                <h:outputLabel for="name" value="First Name" />
+                <h:inputText id="name" label="First Name" required="true" value="#{dataBean.name}" />
+                <h:message for="name" styleClass="error"/>
+
+                <h:outputLabel for="surname" value="Last Name" />
+                <h:inputText id="surname" label="Last Name" required="true" value="#{dataBean.surname}" />
+                <h:message for="surname" styleClass="error"/>
+
+                <h:outputLabel for="city" value="City" />
+                <h:inputText id="city" label="City" required="true" value="#{dataBean.city}" />
+                <h:message for="city" styleClass="error"/>
+
+                <h:outputLabel for="state" value="State" />
+                <h:selectOneListbox id="state" label="State" required="true" value="#{dataBean.state}">
+                    <f:selectItems value="#{dataBean.countries}"/>
+                </h:selectOneListbox>
+                <h:message for="state" styleClass="error"/>
+
+                <h:outputLabel for="zipcode" value="Zip Code" />
+                <h:inputText id="zipcode" label="Zip Code" required="true" value="#{dataBean.zipcode}" />
+                <h:message for="zipcode" styleClass="error"/>
+
+                <h:outputLabel for="address" value="Address" />
+                <h:inputText id="address" label="Address" required="true" value="#{dataBean.address}" />
+                <h:message for="address" styleClass="error"/>
+
+                <h:outputLabel for="email" value="E-mail" />
+                <h:inputText id="email" label="E-mail" required="true" value="#{dataBean.email}">
+                    <f:validator validatorId="emailValidator" />
+                </h:inputText>
+                <h:message for="email" styleClass="error"/>
+
+                <h:commandButton value="Register">
+                    <f:ajax execute="@form" render="@form" />
+                </h:commandButton>
+            </h:panelGrid>
+            <hr/>
+            <h:outputText styleClass="success" value="Thank you !" 
+                          rendered="#{facesContext.postback and not facesContext.validationFailed}" />
+        </h:form>
+    </h:body>
+</html>
