@@ -1,0 +1,18 @@
+label.highlight {
+    color: #ff8080; 
+}
+
+input.highlight, select.highlight, textarea.highlight {
+    background-color: #ff8080; 
+}
+
+label.error {
+     color: #f00;
+ }
+ input.error, select.error, textarea.error {
+     background-color: #fee;
+ }
+
+.error { 
+    color: red; 
+}           
