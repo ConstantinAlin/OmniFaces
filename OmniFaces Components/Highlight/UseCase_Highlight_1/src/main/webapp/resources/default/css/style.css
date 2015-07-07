@@ -1,0 +1,11 @@
+.ui-invalid-label {
+    color: #b5e61d;
+}
+
+.ui-invalid {
+    background-color: #b5e61d;
+}
+
+.error { 
+    color: red; 
+}

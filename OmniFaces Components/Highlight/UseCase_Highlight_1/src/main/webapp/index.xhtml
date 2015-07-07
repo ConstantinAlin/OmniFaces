@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>UseCase_Highlight_1</title>        
+        <h:outputStylesheet library="default" name="css/style.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <h:outputScript target="#{facesContext.partialViewContext.ajaxRequest ? 'form' : 'body'}" rendered="#{facesContext.postback}">                    
+            var json =  #{facesContext.attributes.get("componentIdsJSON")}; 
+            var focuson = '';            
+            $.each(json, function(idx, obj) {
+            if(idx === 0) {
+               focuson = obj.cid;
+              }
+            $(("#"+obj.cid).replace(/:/g, "\\:")).attr("class", "ui-invalid");
+            $("label[for='"+obj.cid+"']").attr("class", "ui-invalid-label");
+            });
+
+            $("[name='"+focuson+"']").first().focus();
+        </h:outputScript>  
+    </h:head>
+    <h:body>         
+        <p>AJAX BASED FORM</p>
+        <h:form id="formId_Ajax">
+            <h:panelGrid columns="3">
+                <h:outputLabel for="name" value="First Name" />
+                <h:inputText id="name" label="First Name" required="true" value="#{dataBean.name}" />
+                <h:message for="name" errorClass="error" />
+
+                <h:outputLabel for="surname" value="Last Name" />
+                <h:inputText id="surname" label="Last Name" required="true" value="#{dataBean.surname}" />
+                <h:message for="surname" errorClass="error" />
+
+                <h:outputLabel for="city" value="City" />
+                <h:inputText id="city" label="City" required="true" value="#{dataBean.city}" />
+                <h:message for="city" errorClass="error" />
+
+                <h:outputLabel for="state" value="State" />
+                <h:selectOneListbox id="state" label="State" required="true" value="#{dataBean.state}">
+                    <f:selectItems value="#{dataBean.countries}"/>
+                </h:selectOneListbox>
+                <h:message for="state" errorClass="error" />
+
+                <h:outputLabel for="zipcode" value="Zip Code" />
+                <h:inputText id="zipcode" label="Zip Code" required="true" value="#{dataBean.zipcode}" />
+                <h:message for="zipcode" errorClass="error" />
+
+                <h:outputLabel for="address" value="Address" />
+                <h:inputText id="address" label="Address" required="true" value="#{dataBean.address}" />
+                <h:message for="address" errorClass="error" />
+
+                <h:outputLabel for="email" value="E-mail" />
+                <h:inputText id="email" label="E-mail" required="true" value="#{dataBean.email}">
+                    <f:validator validatorId="emailValidator" />
+                </h:inputText>
+                <h:message for="email" errorClass="error" />
+
+                <h:commandButton value="Register">
+                    <f:ajax execute="@form" render="@form"/>
+                </h:commandButton>
+            </h:panelGrid>
+        </h:form>
+        <hr/>
+        <p>NON-AJAX BASED FORM</p>
+        <h:form id="formId_nonAjax">
+            <h:panelGrid columns="3">
+                <h:outputLabel for="name" value="First Name" />
+                <h:inputText id="name" label="First Name" required="true" value="#{dataBean.name}" />
+                <h:message for="name" errorClass="error" />
+
+                <h:outputLabel for="surname" value="Last Name" />
+                <h:inputText id="surname" label="Last Name" required="true" value="#{dataBean.surname}" />
+                <h:message for="surname" errorClass="error" />
+
+                <h:outputLabel for="city" value="City" />
+                <h:inputText id="city" label="City" required="true" value="#{dataBean.city}" />
+                <h:message for="city" errorClass="error" />
+
+                <h:outputLabel for="state" value="State" />
+                <h:selectOneListbox id="state" label="State" required="true" value="#{dataBean.state}">
+                    <f:selectItems value="#{dataBean.countries}"/>
+                </h:selectOneListbox>
+                <h:message for="state" errorClass="error" />
+
+                <h:outputLabel for="zipcode" value="Zip Code" />
+                <h:inputText id="zipcode" label="Zip Code" required="true" value="#{dataBean.zipcode}" />
+                <h:message for="zipcode" errorClass="error" />
+
+                <h:outputLabel for="address" value="Address" />
+                <h:inputText id="address" label="Address" required="true" value="#{dataBean.address}" />
+                <h:message for="address" errorClass="error" />
+
+                <h:outputLabel for="email" value="E-mail" />
+                <h:inputText id="email" label="E-mail" required="true" value="#{dataBean.email}">
+                    <f:validator validatorId="emailValidator" />
+                </h:inputText>
+                <h:message for="email" errorClass="error" />
+
+                <h:commandButton value="Register"/>               
+            </h:panelGrid>          
+        </h:form>     
+               
+    </h:body>
+</html>
