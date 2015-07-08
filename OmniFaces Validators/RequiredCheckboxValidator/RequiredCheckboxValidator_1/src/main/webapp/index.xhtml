@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"      
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>RequiredCheckboxValidator_1</title>               
+    </h:head>
+    <h:body>     
+
+        <h:form>      
+            <b>Default error message provided by OmniFaces / error message from Messages.properties if any</b><hr/>            
+            <h:panelGrid columns="3">
+                <h:outputLabel for="termsId" value="Tick terms and conditions:" />
+                <h:selectBooleanCheckbox id="termsId">
+                    <f:validator validatorId="omnifaces.RequiredCheckboxValidator" />
+                </h:selectBooleanCheckbox>
+                <h:commandButton value="Submit"/>                
+            </h:panelGrid>            
+            <h:message for="termsId" />           
+        </h:form>
+
+        <br/><b>Error message provided via 'requiredMessage' attribute</b><hr/>            
+        <h:form>                        
+            <h:panelGrid columns="3">
+                <h:outputLabel for="termsId" value="Tick terms and conditions:" />
+                <h:selectBooleanCheckbox id="termsId" requiredMessage="You must accept terms and conditions!">
+                    <f:validator validatorId="omnifaces.RequiredCheckboxValidator" />
+                </h:selectBooleanCheckbox>
+                <h:commandButton value="Submit"/>                
+            </h:panelGrid>            
+            <h:message for="termsId" />            
+        </h:form>    
+
+        <br/><br/>
+        <h:outputText value="Thank you !" rendered="#{facesContext.postback and not facesContext.validationFailed}" />
+    </h:body>
+</html>
