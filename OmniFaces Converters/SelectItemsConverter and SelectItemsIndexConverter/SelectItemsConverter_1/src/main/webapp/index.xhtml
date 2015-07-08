@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>SelectItemsConverter_1</title>                   
+    </h:head>
+    <h:body>    
+        <h:messages/>
+        <h:form>
+            <h:outputLabel for="atp" value="Players: " />
+            <h:selectOneMenu id="atp" value="#{playerBean.selected}" converter="omnifaces.SelectItemsConverter">
+                <f:selectItem itemLabel="Choose player" noSelectionOption="true" />
+                <f:selectItems value="#{playerBean.topfive}" var="t" itemLabel="#{t.name},#{t.age}" itemValue="#{t}" />                
+            </h:selectOneMenu>            
+            <h:commandButton value="Select"/>
+        </h:form>
+        Selected: <h:outputText value="#{playerBean.selected.name}, #{playerBean.selected.age}"/>
+    </h:body>
+</html>
