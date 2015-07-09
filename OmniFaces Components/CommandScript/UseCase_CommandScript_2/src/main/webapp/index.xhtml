@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>UseCase_CommandScript_2</title>        
+    </h:head>
+    <h:body>
+        <h5>Your Feedback About OmniFaces: </h5>
+        <hr/>
+        <div>            
+            Your Name: <input id="userId" type="text"/>
+            <p id="feedbackId" contenteditable="true">type your feedback here</p>
+        </div>
+        <br/>
+        <button onclick="sendFeedback();">Send Feedback</button>
+        <hr/>
+        <h:outputText id="savedId" value="Last feedback was saved at: #{feedbackBean.lastSave}" />
+        
+        <h:form id="feedbackForm" style="display:none;">
+            <h:inputHidden id="userHiddenId" value="#{feedbackBean.user}"/>
+            <h:inputHidden id="feedbackHiddenId" value="#{feedbackBean.feedback}"/>
+            <h:commandButton id="submitId" action="#{feedbackBean.send()}">
+                <f:ajax execute="@form" render=":savedId"/>
+            </h:commandButton>
+        </h:form>
+        
+        <h:outputScript>
+            function sendFeedback() {
+	            document.getElementById("feedbackForm:userHiddenId").value = document.getElementById("userId").value;
+	            document.getElementById("feedbackForm:feedbackHiddenId").value = document.getElementById("feedbackId").innerHTML;
+	            document.getElementById("feedbackForm:submitId").click();
+            }
+        </h:outputScript>
+    </h:body>
+</html>
