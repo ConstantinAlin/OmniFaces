@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"     >
+    <h:head>
+        <title>DeferredScript_1</title>           
+    </h:head>
+    <h:body>
+        <h3>After 5 seconds you will see a cool message ...</h3>
+        <a id="msgId" href="http://showcase.omnifaces.org/"></a>        
+
+        <script type="text/javascript">
+            // Add a script element as a child of the body
+            function downloadJSAtOnload() {
+                var element = document.createElement("script");
+                element.src = "resources/default/js/sample.js";
+                document.body.appendChild(element);
+            }
+
+            // Check for browser support of event handling capability
+            if (window.addEventListener)
+                window.addEventListener("load", downloadJSAtOnload, false);
+            else if (window.attachEvent)
+                window.attachEvent("onload", downloadJSAtOnload);
+            else
+                window.onload = downloadJSAtOnload;
+
+        </script>
+    </h:body>
+</html>
