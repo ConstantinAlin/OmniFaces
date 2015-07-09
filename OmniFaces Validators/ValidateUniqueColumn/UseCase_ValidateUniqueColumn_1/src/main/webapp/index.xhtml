@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>UseCase_ValidateUniqueColumn_1</title>               
+    </h:head>
+    <h:body>     
+        <h:form>                   
+            <h:dataTable value="#{playerBean.players}" var="t">
+                <h:column>
+                    #{component.namingContainer.rowIndex + 1}
+                </h:column>
+                <h:column>
+                    <h:inputText id="playerNameId" label="Name" value="#{t.name}" required="true" validator="playerUniqueValidator"/>                                                                                
+                </h:column>
+                <h:column>            
+                    <h:message id="messageNameId" for="playerNameId" />                    
+                </h:column>
+                <h:column>
+                    <h:inputText id="playerEmailId" label="E-mail" value="#{t.email}" required="true" validator="playerUniqueValidator"/>                                                                                
+                </h:column>    
+                <h:column>            
+                    <h:message id="messageEmailId" for="playerEmailId" />                
+                </h:column>
+            </h:dataTable>
+            <h:commandButton value="Send"/>
+        </h:form>
+        <h:outputText value="No validation errors!" rendered="#{facesContext.postback and not facesContext.validationFailed}" />
+    </h:body>
+</html>
