@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>UseCase_OnloadScript_2</title>
+        <style type="text/css">
+            #panelId table {
+                padding:2px; border: 1px solid black; 
+            }
+            #panelId table td {
+                padding:5px; border: 1px solid black; 
+            }            
+        </style>
+        <h:outputScript target="body">                
+            //<![CDATA[            
+            var panel = document.getElementById('panelId');
+            panel.innerHTML = "";
+            var tbl = document.createElement('table');
+            var tbdy = document.createElement('tbody');
+            for (var i = 0; i < '#{dataBean.rows}'; i++) {
+	            var tr = document.createElement('tr');
+	            for (var j = 0; j < '#{dataBean.cols}'; j++) {
+		            var td = document.createElement('td');
+		            td.appendChild(document.createTextNode('Empty'));
+		            tr.appendChild(td);
+	            }
+	            tbdy.appendChild(tr);
+            }
+            tbl.appendChild(tbdy);
+            panel.appendChild(tbl);
+            //]]>
+        </h:outputScript>
+    </h:head>
+    <h:body>
+        <h:form id="formId">
+            <h:panelGrid columns="2">
+                <h:outputLabel for="rowsId" value="Number of rows:" />
+                <h:inputText id="rowsId" value="#{dataBean.rows}" />
+                <h:outputLabel for="colsId" value="Number of columns:" />
+                <h:inputText id="colsId" value="#{dataBean.cols}" />
+            </h:panelGrid>
+            <h:commandButton value="GENERATE TABLE" />
+        </h:form>
+        <h:panelGroup layout="block" id="panelId"/>       
+    </h:body>
+</html>
