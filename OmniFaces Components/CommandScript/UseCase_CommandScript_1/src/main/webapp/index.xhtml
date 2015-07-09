@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>UseCase_CommandScript_1</title>        
+    </h:head>
+    <h:body>
+        <h5>Your Feedback About OmniFaces: </h5>
+        <hr/>
+        <div>            
+            Your Name: <input id="userId" type="text"/>
+            <p id="feedbackId" contenteditable="true">type your feedback here</p>
+        </div>
+        <br/>
+        <button onclick="sendFeedback();">Send Feedback</button>
+        <hr/>
+        <h:outputText id="savedId" value="Last feedback was saved at: #{feedbackBean.lastSave}" />
+        
+        <h:form id="feedbackForm" style="display:none;">
+            <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
+            <h:commandButton id="submitId" action="#{feedbackBean.send()}" />
+        </h:form>
+        
+        <h:outputScript>
+            function sendFeedback() {
+	            var feedbackData = [{
+	             user: document.getElementById("userId").value,
+	             feedback: document.getElementById("feedbackId").innerHTML
+	            }];
+            
+	            jsf.ajax.request('feedbackForm:submitId', null, {
+	            'javax.faces.behavior.event': 'action', 
+	            execute: 'feedbackForm', render: 'savedId',
+	            params: JSON.stringify(feedbackData)
+	            });
+            }
+        </h:outputScript>
+    </h:body>
+</html>
