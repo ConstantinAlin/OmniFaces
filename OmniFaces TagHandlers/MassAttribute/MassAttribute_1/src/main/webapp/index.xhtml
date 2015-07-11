@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>MassAttribute_1</title>               
+    </h:head>
+    <h:body> 
+        <h3>Repeating attribute</h3>
+        <h:form id="myForm1">
+            <h:inputText id="item1"/>
+            <h:inputText id="item2"/>            
+            <h:inputText id="item3" rendered="false"/>
+            <h:inputText id="item4" rendered="false"/>
+            <h:inputText id="item5" rendered="false"/>          
+        </h:form>
+        <hr/>
+        <h3>Using o:massAttribute</h3>
+        <h:form id="myForm2">    
+            <h:inputText id="item1"/>
+            <h:inputText id="item2"/>
+            <o:massAttribute name="rendered" value="false">
+                <h:inputText id="item3"/>
+                <h:inputText id="item4"/>
+                <h:inputText id="item5"/>
+            </o:massAttribute>           
+        </h:form>
+    </h:body>
+</html>
