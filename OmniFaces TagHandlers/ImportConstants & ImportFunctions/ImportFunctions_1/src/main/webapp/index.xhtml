@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>ImportFunctions_1</title>               
+    </h:head>
+    <h:body> 
+        <o:importFunctions type="omnify.usecase.importFunctions.PlayerHelper" />
+        <o:importFunctions type="omnify.usecase.importFunctions.PlayerHelper" var="invoke"/>
+
+        <h5>Is number 1 ATP available ?</h5>
+        <h:outputText value="#{PlayerHelper:isPlayerAvailable(1)}"/><br/>
+        <h:outputText value="#{invoke:isPlayerAvailable(1)}"/>
+    </h:body>
+</html>
