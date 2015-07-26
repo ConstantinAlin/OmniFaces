@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f5="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>ResolveComponent_1</title>        
+    </h:head>
+    <h:body>       
+        <h:form>            
+            <h:selectBooleanCheckbox id="nameId" onchange="submit()" label="name"/> Name                         
+            <h:selectBooleanCheckbox id="surnameId" onchange="submit()" label="surname"/> Surname            
+        </h:form>
+
+        <o:resolveComponent name="nameRef" for="nameId" />
+        <o:resolveComponent name="surnameRef" for="surnameId" />
+
+        <h:form>  
+            <h:inputText rendered="#{nameRef.value}" f5:placeholder = "#{nameRef.label}"/>            
+            <h:inputText rendered="#{surnameRef.value}" f5:placeholder = "#{surnameRef.label}"/>
+        </h:form>
+    </h:body>
+</html>
