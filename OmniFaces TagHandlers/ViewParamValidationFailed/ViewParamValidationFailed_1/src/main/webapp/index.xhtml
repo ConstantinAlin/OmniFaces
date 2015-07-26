@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>ViewParamValidationFailed_1</title>            
+        <f:metadata>
+            <f:viewParam id="nameId" name="name" required="true"
+                         validatorMessage="The name is not valid!">
+                <f:validateRegex pattern="^[a-zA-Z\\\\s]+"/>
+            </f:viewParam>
+            <f:viewParam id="ageId" name="age" required="true"
+                         validatorMessage="The age is not valid!">
+                <f:validateRegex pattern="^(\d?[1-9]|[1-9]0)$"/>
+            </f:viewParam>
+            <o:viewParamValidationFailed sendError="400" message="One of your view parameters is invalid !" />
+        </f:metadata>
+    </h:head>
+    <h:body>             
+        <h:outputText value="Everything works perfect!"/>       
+    </h:body>
+</html>
