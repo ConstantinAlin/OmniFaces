@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">    
+    <h:head>
+        <title>UseCase_ViewParam_2</title>        
+    </h:head>    
+    <h:body>        
+        <!-- Prepare the URL to test: 
+        http://localhost:8080/UseCase_ViewParam_2/faces/ping.xhtml?phone=0732845714&payment=MASTERCARD&reversecharge=YES 
+        -->
+        <h:link value="START POINT" outcome="ping.xhtml">
+            <f:param name="phone" value="0732845714"/>            
+            <f:param name="payment" value="MASTERCARD"/>        
+            <f:param name="reversecharge" value="YES"/>
+        </h:link>
+    </h:body>
+</html>
