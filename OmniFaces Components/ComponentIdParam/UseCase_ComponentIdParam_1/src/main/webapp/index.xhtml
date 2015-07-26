@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>UseCase_ComponentIdParam_1</title>        
+    </h:head>
+    <h:body>          
+        My favorite player:<br/>
+        <h:graphicImage id="myPlayerId" library="default" name="images/#{playersBean.favorite}.png"/>
+        <h:form id="myFormId">      
+            <h:panelGrid id="panelId"> 
+                <h:panelGroup id="div1Id" layout="block">
+                    Player Name: 
+                    <h:outputText id="myPlayerNameId" value="#{playersBean.players[playersBean.favorite-1].player}" />
+                </h:panelGroup>
+                <h:panelGroup id="div2Id" layout="block">
+                    Favorite Player Rank: 
+                    <h:inputText id="myPlayerRankId" value="#{playersBean.favorite}"/>                                      
+                    <h:commandButton id="myButtonId" value="See"/>
+                </h:panelGroup>                                                              
+            </h:panelGrid>
+        </h:form>
+        <hr/>
+        Top 5 players:
+        <h:form id="tableFormId">
+            <h:dataTable id="playersTableId" value="#{playersBean.players}" var="t" border="1">
+                <h:column>
+                    <f:facet name="header">Ranking</f:facet>
+                    <h:outputText id="rankingId" value="#{t.ranking}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:panelGroup id="playerDivId" layout="block" style="height:20px;width:200px;background-color: lightgray;">
+                        <h:outputText id="playerId" value="#{t.player}"/>
+                    </h:panelGroup>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Age</f:facet>
+                    <h:outputText id="ageId" value="#{t.age}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Birthplace</f:facet>
+                    <h:outputText id="birthplaceId" value="#{t.birthplace}"/>
+                </h:column>                
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
