@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>UseCase_ResolveComponent_1</title>        
+    </h:head>
+    <h:body>       
+        <h:form>             
+            <h:selectBooleanCheckbox id="nameId" onchange="submit()" label="name" binding="#{name}"/> Name                         
+            <h:selectBooleanCheckbox id="surnameId" onchange="submit()" label="surname" binding="#{surname}"/> Surname            
+        </h:form>        
+
+        <h:form>  
+            <h:inputText rendered="#{name.value}" a:placeholder = "#{name.label}"/>            
+            <h:inputText rendered="#{surname.value}" a:placeholder = "#{surname.label}"/>
+        </h:form>
+    </h:body>
+</html>
