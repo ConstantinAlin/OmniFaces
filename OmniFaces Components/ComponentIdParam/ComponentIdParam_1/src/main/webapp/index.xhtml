@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>ComponentIdParam_1</title>  
+            <f:metadata>
+                <o:componentIdParam componentIdName="component" clientIdName="client" />
+                <o:componentIdParam componentIdName="component_wc" clientIdName="client_wc" renderChildren="false" />
+            </f:metadata>
+    </h:head>
+    <h:body>  
+        My favorite player:<br/>
+        <h:graphicImage id="myPlayerId" library="default" name="images/#{playersBean.favorite}.png"/>
+        <h:form id="myFormId">            
+            <h:panelGrid id="panelId"> 
+                <h:panelGroup id="div1Id" layout="block">
+                    Player Name: 
+                    <h:outputText id="myPlayerNameId" value="#{playersBean.players[playersBean.favorite-1].player}" />
+                </h:panelGroup>
+                <h:panelGroup id="div2Id" layout="block">
+                    Favorite Player Rank: 
+                    <h:inputText id="myPlayerRankId" value="#{playersBean.favorite}"/>                                      
+                    <h:commandButton id="myButtonId" value="See"/>
+                </h:panelGroup>                                                              
+            </h:panelGrid>
+        </h:form>
+        <hr/>
+        Top 5 players:
+        <h:form id="tableFormId">
+            <h:dataTable id="playersTableId" value="#{playersBean.players}" var="t" border="1">
+                <h:column>
+                    <f:facet name="header">Ranking</f:facet>
+                    <h:outputText id="rankingId" value="#{t.ranking}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:panelGroup id="playerDivId" layout="block" style="height:20px;width:200px;background-color: lightgray;">
+                        <h:outputText id="playerId" value="#{t.player}"/>
+                    </h:panelGroup>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Age</f:facet>
+                    <h:outputText id="ageId" value="#{t.age}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Birthplace</f:facet>
+                    <h:outputText id="birthplaceId" value="#{t.birthplace}"/>
+                </h:column>                
+            </h:dataTable>
+        </h:form>
+        <hr/>
+        <ul>           
+            <li>             
+                <h:link target="_blank">                    
+                    <f:param name="component" value="myPlayerId"/>        
+                    Render only the image (myPlayerId)  
+                </h:link>
+            </li>
+            <li>
+                <h:link target="_blank">
+                    <f:param name="component" value="myFormId"/>        
+                    Render only the first form (myFormId)  
+                </h:link>
+            </li>                               
+            <li>
+                <h:link target="_blank">
+                    <f:param name="component" value="myPlayerNameId"/>        
+                    <f:param name="component" value="tableFormId"/>                                
+                    Render only the player name and the second form (myPlayerNameId, tableFormId)  
+                </h:link>
+            </li> 
+            <li>
+                <h:link target="_blank">
+                    <f:param name="component" value="myPlayerRankId"/>        
+                    <f:param name="component" value="myButtonId"/>       
+                    <f:param name="client" 
+                             value="tableFormId:playersTableId:0:playerDivId"/>     
+                    Render only the player rank input and button (myPlayerRankId, myButtonId)                      
+                </h:link>
+            </li>
+            <li>
+                <h:link target="_blank">
+                    <f:param name="component" value="playersTableId"/>                            
+                    Render only the players table (playersTableId)                      
+                </h:link>
+            </li>
+            <li>
+                <h:link target="_blank">
+                    <f:param name="component_wc" value="playersTableId"/>                            
+                    Render only the players table without children (playersTableId)                      
+                </h:link>
+            </li>
+            <li>
+                <h:link target="_blank">
+                    <f:param name="client" 
+                             value="tableFormId:playersTableId:0:playerDivId"/>                            
+                    <f:param name="client" 
+                             value="tableFormId:playersTableId:1:playerDivId"/>
+                    Render the divs that contains the players 
+                    names only for the first two players in the table 
+                    (tableFormId:playersTableId:0:playerDivId, 
+                    tableFormId:playersTableId:1:playerDivId)                      
+                </h:link>
+            </li>
+            <li>  
+                <h:link target="_blank">
+                    <f:param name="client_wc" 
+                             value="tableFormId:playersTableId:0:playerDivId"/>                            
+                    <f:param name="client_wc" 
+                             value="tableFormId:playersTableId:1:playerDivId"/>
+                    Render the divs that contains the players 
+                    names only for the first two players in the table
+                    without children (tableFormId:playersTableId:0:playerDivId,
+                    tableFormId:playersTableId:1:playerDivId)                      
+                </h:link>
+            </li>
+        </ul>                
+    </h:body>
+</html>
