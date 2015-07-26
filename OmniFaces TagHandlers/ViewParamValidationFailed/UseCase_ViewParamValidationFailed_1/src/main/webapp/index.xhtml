@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>UseCase_ViewParamValidationFailed_1</title>    
+        <f:metadata>
+            <f:viewParam id="nameId" name="name" validatorMessage="The name is not valid!">
+                <f:validateRegex pattern="^[a-zA-Z\\\\s]+"/>                              
+            </f:viewParam>           
+            <f:viewParam id="ageId" name="age" validatorMessage="The age is not valid!">
+                <f:validateRegex pattern="^(\d?[1-9]|[1-9]0)$"/>                              
+            </f:viewParam>
+        </f:metadata>
+    </h:head>
+    <h:body>     
+        #{facesContext.validationFailed ? (vdl = facesContext.application.viewHandler.getViewDeclarationLanguage(facesContext, view.viewId);
+          viewMetadata = vdl.getViewMetadata(facesContext, view.viewId);allViewParams = viewMetadata.getViewParameters(view);
+          allViewParams.size() gt 0 ? (allViewParams.stream().forEach((t) -> 
+          (t.valid ? '': (facesContext.externalContext.responseCommitted ? '':facesContext.externalContext.responseSendError(400, "One of your view parameters is invalid !");facesContext.responseComplete())))):''):''}                        
+
+        <h:outputText value="Everything works perfect!"/>
+    </h:body>
+</html>
