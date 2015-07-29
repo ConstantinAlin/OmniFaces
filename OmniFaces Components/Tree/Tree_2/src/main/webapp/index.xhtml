@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>Tree_2</title>     
+        <style type="text/css">
+            .level0 {
+                font-family: Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+                font-size: 20px;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 500;
+                line-height: 26.3999996185303px;                
+            }
+            .level1 {
+                font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;
+                font-size: 18px;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 500;
+                line-height: 15.3999996185303px;
+            }
+            .level2 {
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+                font-size: 16px;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 500;
+                line-height: 15.3999996185303px;
+            }
+        </style>
+    </h:head>
+    <h:body>     
+        <h:panelGroup id="staticTree1">
+            <o:tree value="#{treeBean.tree}" var="t">
+                <o:treeNode level="0">                 
+                    <o:treeNodeItem> 
+                        <h:graphicImage library="default" name="icons/omnifaces_logo.png"/>
+                        <span class="level0">#{t}</span>
+                        <o:treeInsertChildren /> 
+                    </o:treeNodeItem>                  
+                </o:treeNode>                            
+                <o:treeNode level="1">    
+                    <ul type="none">
+                        <o:treeNodeItem> 
+                            <li>
+                                <h:graphicImage library="default" name="icons/components_icon.png"/>
+                                <span class="level1">#{t}</span>
+                                <o:treeInsertChildren /> 
+                            </li>
+                        </o:treeNodeItem>                  
+                    </ul>
+                </o:treeNode> 
+                <o:treeNode level="2">        
+                    <ul>
+                        <o:treeNodeItem> 
+                            <li>                                
+                                <span class="level2">#{t}</span>
+                                <o:treeInsertChildren /> 
+                            </li>
+                        </o:treeNodeItem>                  
+                    </ul>
+                </o:treeNode> 
+                <o:treeNode>        
+                    <ul>
+                        <o:treeNodeItem> 
+                            <li>                                
+                                <span>#{t}</span>
+                                <o:treeInsertChildren /> 
+                            </li>
+                        </o:treeNodeItem>                  
+                    </ul>
+                </o:treeNode>
+            </o:tree>            
+        </h:panelGroup>            
+    </h:body>
+</html>
