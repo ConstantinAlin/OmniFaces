@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"    
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>Cache_9</title>
+        <style>
+            .top-aligned-columns td{
+                vertical-align: top;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h3>EL CACHE</h3>
+        <hr/>   
+        <h4>CACHE ENABLED</h4>
+        <hr/>                   
+        <h:panelGrid columns="2" styleClass="top-aligned-columns" style="display:block">               
+            <h:form>                 
+                <table>
+                    <tr>
+                        <td>
+                            <div style="font-size:13px;">Selected address: #{addressBean.selectedAddress}</div>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <o:cache key="t1">
+                                <o:cacheValue name="addresses" value="#{addressBean.addresses}"/>
+                                <h:dataTable value="#{addresses}" var="t" border="1" style="width:250px;">
+                                    <h:column>
+                                        <f:facet name="header">Address (with fixed cache)</f:facet>
+                                            #{t}
+                                    </h:column>  
+                                    <h:column>
+                                        <h:commandButton value="Select" action="#{addressBean.selectAddress(t)}" >
+                                            <f:ajax execute="@form" render="@form" />
+                                        </h:commandButton>
+                                    </h:column>
+                                </h:dataTable>
+                            </o:cache>
+                        </td>
+                        <td>
+                            <div><strong>Cache Content:</strong> #{addressBean.getCacheContent('t1')}</div>
+                        </td>
+                        <td>
+                            <div><strong>Cache EL Content:</strong> #{addressBean.getCacheELContent('t1','addresses')}</div>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+            <br/>
+            <h:form>                 
+                <table>
+                    <tr>
+                        <td>
+                            <div style="font-size:13px;">Selected address: #{addressBean.selectedAddress}</div>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <o:cache key="t2">                                
+                                <h:dataTable value="#{addressBean.addresses}" var="t" border="1" style="width:250px;">
+                                    <h:column>
+                                        <f:facet name="header">Address (with fixed cache)</f:facet>
+                                            #{t}
+                                    </h:column>  
+                                    <h:column>
+                                        <h:commandButton value="Select" action="#{addressBean.selectAddress(t)}" >
+                                            <f:ajax execute="@form" render="@form" />
+                                        </h:commandButton>
+                                    </h:column>
+                                </h:dataTable>
+                            </o:cache>
+                        </td>
+                        <td>
+                            <div><strong>Cache Content:</strong> #{addressBean.getCacheContent('t2')}</div>
+                        </td>
+                        <td>
+                            <div><strong>Cache EL Content:</strong> #{addressBean.getCacheELContent('t2','addresses')}</div>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </h:panelGrid>
+        <hr/> 
+        <h4>CACHE DISABLED</h4>
+        <hr/> 
+        <h:panelGrid columns="2" styleClass="top-aligned-columns" style="display:block">               
+            <h:form>                 
+                <table>
+                    <tr>
+                        <td>
+                            <div style="font-size:13px;">Selected address: #{addressBean.selectedAddress}</div>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <o:cache key="t3" disabled="#{addressBean.nocache}">
+                                <o:cacheValue name="addresses" value="#{addressBean.addresses}"/>
+                                <h:dataTable value="#{addresses}" var="t" border="1" style="width:250px;">
+                                    <h:column>
+                                        <f:facet name="header">Address (with cache disabled)</f:facet>
+                                            #{t}
+                                    </h:column>  
+                                    <h:column>
+                                        <h:commandButton value="Select" action="#{addressBean.selectAddress(t)}" >
+                                            <f:ajax execute="@form" render="@form" />
+                                        </h:commandButton>
+                                    </h:column>
+                                </h:dataTable>
+                            </o:cache>
+                        </td>
+                        <td>
+                            <div><strong>Cache Content:</strong> #{addressBean.getCacheContent('t3')}</div>
+                        </td>
+                        <td>
+                            <div><strong>Cache EL Content:</strong> #{addressBean.getCacheELContent('t3','addresses')}</div>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+            <br/>
+            <h:form>                 
+                <table>
+                    <tr>
+                        <td>
+                            <div style="font-size:13px;">Selected address: #{addressBean.selectedAddress}</div>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <o:cache key="t4" disabled="#{addressBean.nocache}">                                
+                                <h:dataTable value="#{addressBean.addresses}" var="t" border="1" style="width:250px;">
+                                    <h:column>
+                                        <f:facet name="header">Address (with cache disabled)</f:facet>
+                                            #{t}
+                                    </h:column>  
+                                    <h:column>
+                                        <h:commandButton value="Select" action="#{addressBean.selectAddress(t)}" >
+                                            <f:ajax execute="@form" render="@form" />
+                                        </h:commandButton>
+                                    </h:column>
+                                </h:dataTable>
+                            </o:cache>
+                        </td>
+                        <td>
+                            <div><strong>Cache Content:</strong> #{addressBean.getCacheContent('t4')}</div>
+                        </td>
+                        <td>
+                            <div><strong>Cache EL Content:</strong> #{addressBean.getCacheELContent('t4','addresses')}</div>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </h:panelGrid>
+    </h:body>
+</html>
