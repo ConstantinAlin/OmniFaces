@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>GraphicImage_1</title>
+    </h:head>
+    <h:body> 
+        <h1>Images provided as a byte[] via a managed bean from a Servlet</h1>
+        <h3>- an image provided as a byte[] via a managed bean from a Servlet</h3>
+        <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromServlet()}" />
+
+        <h3>- a random image provided as a byte[] via a managed bean from a Servlet</h3>
+        <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromServletRnd(imageIdsBean.id())}" />
+
+        <h3>- a list of images provided as a byte[] via a managed bean from a Servlet</h3>
+        <ui:repeat value="#{imageIdsBean.ids}" var="id">
+            <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromServletRnd(id)}" />
+        </ui:repeat>
+
+        <h3>- an image provided as a byte[] via a managed bean from a Servlet using dataURI</h3>
+        <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromServlet()}" dataURI="true"/>
+        
+        <h3>- use lastModified with an image provided as a byte[] via a managed bean from a Servlet</h3>
+        <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromServlet()}" lastModified="#{startup.time}"/>
+        
+        <h1>Images provided as a byte[] via a managed bean from a folder</h1>
+        <h3>- an image provided as a byte[] via a managed bean from a folder</h3>
+        <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromFolder()}" />
+
+        <h3>- a random image provided as a byte[] via a managed bean from a folder</h3>
+        <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromFolderRnd(imageIdsBean.id())}" />
+
+        <h3>- a list of images provided as a byte[] via a managed bean from a folder</h3>
+        <ui:repeat value="#{imageIdsBean.ids}" var="id">
+            <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromFolderRnd(id)}" />
+        </ui:repeat>
+
+        <h3>- an image provided as a byte[] via a managed bean from a folder using dataURI</h3>
+        <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromFolder()}" dataURI="true"/>
+        
+        <h3>- use lastModified with an image provided as a byte[] via a managed bean from a folder</h3>
+        <o:graphicImage value="#{byteImageBean.imageAsByteArrayFromFolder()}" lastModified="#{startup.time}"/>
+        
+    </h:body>
+</html>
