@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>MoveComponent_1</title>        
+    </h:head>
+    <h:body>        
+        <h:form id="loginFormId">
+            Login status: <h:outputText id="statusId" value="#{loginBean.info}"/>
+            <h:panelGrid id="panelId" columns="2">
+                <f:facet name="header">Login</f:facet>
+                E-mail: <h:inputText id="emailId" required="true" value="#{loginBean.email}"/>
+                Password: <h:inputSecret id="passwordId" required="true" value="#{loginBean.password}"/>
+            </h:panelGrid>
+            <h:commandButton id="submitId" value="Login" action="#{loginBean.loginAction()}"/>
+            <h:messages id="validationId"/>
+        </h:form>
+
+        <o:moveComponent for="panelId" destination="FACET" facet="header">
+            Login with your e-mail and password
+        </o:moveComponent>
+
+        <o:moveComponent for="panelId" destination="ADD_LAST">
+            Security text <p:captcha id="captchaId" label="Captcha" />
+        </o:moveComponent>       
+
+        <o:moveComponent for="submitId" destination="BEHAVIOR" behaviorDefaultEvent="action">
+            <f:ajax execute="loginFormId" render="validationId statusId"/>
+        </o:moveComponent>
+    </h:body>
+</html>
