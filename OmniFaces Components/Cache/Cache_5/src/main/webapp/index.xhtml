@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"    
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>Cache_5</title>
+        <style>
+            .top-aligned-columns td{
+                vertical-align: top;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h3>FIXED CACHE WITH DISABLE</h3>
+        <hr/>
+        <h:form>
+            <h:commandButton value="Generate Address" action="#{addressBean.generateAddress()}"/>
+        </h:form>
+        Cache disabled ? #{addressBean.disabled}
+        <h:panelGrid columns="3" styleClass="top-aligned-columns" style="display:block">                           
+            <o:cache disabled="#{addressBean.disabled}">               
+                <h:dataTable value="#{addressBean.addresses}" var="t" border="1">
+                    <h:column>
+                        <f:facet name="header">Address (with fixed cache and disabled)</f:facet>
+                            #{t}
+                    </h:column>                
+                </h:dataTable>                   
+            </o:cache>                                            
+            <h:dataTable value="#{addressBean.addresses}" var="t" border="1">
+                <h:column>
+                    <f:facet name="header">Address (without cache)</f:facet>
+                        #{t}
+                </h:column>                
+            </h:dataTable>               
+        </h:panelGrid>
+    </h:body>
+</html>
