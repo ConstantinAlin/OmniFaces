@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>UseCase_Param_2</title>
+        <style type="text/css">
+            .error { 
+                color: red; 
+            }
+            .success {
+                color: blue; font-weight: bold; 
+            }
+        </style>
+    </h:head>
+    <h:body>        
+        <f:view>
+            <h:form>
+                <h4>Please, enter your 10 digits phone number: </h4>
+                <h:panelGrid columns="3">
+                    <h:outputLabel for="phone" value="Phone Number: " />
+                    <h:inputText id="phone" required="true" value="#{dataBean.number}" 
+                                 converter="phoneNumberConverter" />
+                    <h:message for="phone" errorClass="error" />               
+
+                    <h:commandButton value="Send">
+                        <f:ajax execute="@form" render="@form" />
+                    </h:commandButton>
+                </h:panelGrid>
+                <hr/>                  
+                <h:outputFormat styleClass="success" value="Thank you ! You can now {0} this number." escape="false"
+                                rendered="#{facesContext.postback and not facesContext.validationFailed}">
+                    <f:param value="&lt;a href=&quot;/UseCase_Param_2/faces/dial.xhtml?number=#{dataBean.number}&quot;&gt;dial&lt;/a&gt;"/>
+                </h:outputFormat>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
