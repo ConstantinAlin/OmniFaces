@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Cache_8</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            var sTime_a1 = new Date().getTime();
+            var countDown_a1 = 4;
+            var counter_a1 = setInterval(UpdateTime_a1, '500');
+
+            function UpdateTime_a1() {
+                var cTime_a1 = new Date().getTime();
+                var diff_a1 = cTime_a1 - sTime_a1;
+                var seconds_a1 = countDown_a1 - Math.floor(diff_a1 / 1000);
+                if (seconds_a1 >= 0) {
+                    var minutes_a1 = Math.floor(seconds_a1 / 60);
+                    seconds_a1 -= minutes_a1 * 60;
+                    $("#minutes_a1").text(minutes_a1 < 10 ? "0" + minutes_a1 : minutes_a1);
+                    $("#seconds_a1").text(seconds_a1 < 10 ? "0" + seconds_a1 : seconds_a1);
+                } else {
+                    sTime_a1 = new Date().getTime();
+                    countDown_a1 = 4;
+                    counter_a1 = setInterval(UpdateTime_a1, '500');
+                    UpdateTime_a1();
+                }
+            }
+            
+            var sTime_a2 = new Date().getTime();
+            var countDown_a2 = 12;
+            var counter_a2 = setInterval(UpdateTime_a2, '500');
+
+            function UpdateTime_a2() {
+                var cTime_a2 = new Date().getTime();
+                var diff_a2 = cTime_a2 - sTime_a2;
+                var seconds_a2 = countDown_a2 - Math.floor(diff_a2 / 1000);
+                if (seconds_a2 >= 0) {
+                    var minutes_a2 = Math.floor(seconds_a2 / 60);
+                    seconds_a2 -= minutes_a2 * 60;
+                    $("#minutes_a2").text(minutes_a2 < 10 ? "0" + minutes_a2 : minutes_a2);
+                    $("#seconds_a2").text(seconds_a2 < 10 ? "0" + seconds_a2 : seconds_a2);
+                } else {
+                    sTime_a2 = new Date().getTime();
+                    countDown_a2 = 12;
+                    counter_a2 = setInterval(UpdateTime_a2, '500');
+                    UpdateTime_a2();
+                }
+            }
+            
+            var sTime_a3 = new Date().getTime();
+            var countDown_a3 = 21;
+            var counter_a3 = setInterval(UpdateTime_a3, '500');
+
+            function UpdateTime_a3() {
+                var cTime_a3 = new Date().getTime();
+                var diff_a3 = cTime_a3 - sTime_a3;
+                var seconds_a3 = countDown_a3 - Math.floor(diff_a3 / 1000);
+                if (seconds_a3 >= 0) {
+                    var minutes_a3 = Math.floor(seconds_a3 / 60);
+                    seconds_a3 -= minutes_a3 * 60;
+                    $("#minutes_a3").text(minutes_a3 < 10 ? "0" + minutes_a3 : minutes_a3);
+                    $("#seconds_a3").text(seconds_a3 < 10 ? "0" + seconds_a3 : seconds_a3);
+                } else {
+                    sTime_a3 = new Date().getTime();
+                    countDown_a3 = 21;
+                    counter_a3 = setInterval(UpdateTime_a3, '500');
+                    UpdateTime_a3();
+                }
+            }
+            
+            var sTime_a4 = new Date().getTime();
+            var countDown_a4 = 8;
+            var counter_a4 = setInterval(UpdateTime_a4, '500');
+
+            function UpdateTime_a4() {
+                var cTime_a4 = new Date().getTime();
+                var diff_a4 = cTime_a4 - sTime_a4;
+                var seconds_a4 = countDown_a4 - Math.floor(diff_a4 / 1000);
+                if (seconds_a4 >= 0) {
+                    var minutes_a4 = Math.floor(seconds_a4 / 60);
+                    seconds_a4 -= minutes_a4 * 60;
+                    $("#minutes_a4").text(minutes_a4 < 10 ? "0" + minutes_a4 : minutes_a4);
+                    $("#seconds_a4").text(seconds_a4 < 10 ? "0" + seconds_a4 : seconds_a4);
+                } else {
+                    sTime_a4 = new Date().getTime();
+                    countDown_a4 = 8;
+                    counter_a4 = setInterval(UpdateTime_a4, '500');
+                    UpdateTime_a4();
+                }
+            }
+            //]]>                                                 
+        </script>
+        <style> 
+            .panel{
+                padding:10px 25px 10px 10px;                               
+            }
+            .red {                            
+                padding:10px 120px 10px 10px;
+                background-color: red;
+            }
+            .blue {                
+                padding:10px 120px 10px 10px;
+                background-color: blue;
+            }
+            .text{
+                font-size: 14px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h3>FIXED CACHE WITH INDIVIDUAL TTL</h3>           
+        <hr/>                      
+        <h:panelGrid columns="1" style="display:block">            
+            <h:panelGrid id="panelCacheId" columns="4" style="display:block">
+                <o:cache id="a1" key="address_1" time="4">                                                          
+                    <h:outputText value="#{addressBean.generateAddress()}" styleClass="text" />
+                </o:cache>
+                <o:cache id="a2" key="address_2" time="12">                                                          
+                    <h:outputText value="#{addressBean.generateAddress()}" styleClass="text"/>
+                </o:cache>
+                <o:cache id="a3" key="address_3" time="21">                                                          
+                    <h:outputText value="#{addressBean.generateAddress()}" styleClass="text"/>
+                </o:cache>
+                <o:cache id="a4" key="address_4" time="8">                                               
+                    <h:outputText value="#{addressBean.generateAddress()}" styleClass="text"/>
+                </o:cache>                                
+                <h:panelGroup id="pa1" styleClass="#{addressBean.checkCache('address_1')}" layout="block">
+                    <h:outputText value="address_1"/>
+                </h:panelGroup>
+                <h:panelGroup id="pa2" styleClass="#{addressBean.checkCache('address_2')}" layout="block">
+                    <h:outputText value="address_2"/>
+                </h:panelGroup>
+                <h:panelGroup id="pa3" styleClass="#{addressBean.checkCache('address_3')}" layout="block">
+                    <h:outputText value="address_3"/>
+                </h:panelGroup>
+                <h:panelGroup id="pa4" styleClass="#{addressBean.checkCache('address_4')}" layout="block">
+                    <h:outputText value="address_4"/>
+                </h:panelGroup>            
+            </h:panelGrid> 
+            <h:panelGrid id="panelDivsId" columns="4" style="display:block">
+                <h:panelGroup styleClass="panel" layout="block">
+                    <div id="countdown_a1">            
+                        <div style="float:left">Estimated remaining: </div>
+                        <div id="minutes_a1" style="float:left">00</div>
+                        <div style="float:left">:</div>
+                        <div id="seconds_a1" style="float:left">00</div>
+                    </div>
+                </h:panelGroup>
+                <h:panelGroup styleClass="panel" layout="block">
+                    <div id="countdown_a2">            
+                        <div style="float:left">Estimated remaining: </div>
+                        <div id="minutes_a2" style="float:left">00</div>
+                        <div style="float:left">:</div>
+                        <div id="seconds_a2" style="float:left">00</div>
+                    </div>
+                </h:panelGroup>
+                <h:panelGroup styleClass="panel" layout="block">
+                    <div id="countdown_a3">            
+                        <div style="float:left">Estimated remaining: </div>
+                        <div id="minutes_a3" style="float:left">00</div>
+                        <div style="float:left">:</div>
+                        <div id="seconds_a3" style="float:left">00</div>
+                    </div>
+                </h:panelGroup>
+                <h:panelGroup styleClass="panel" layout="block">
+                    <div id="countdown_a4">            
+                        <div style="float:left">Estimated remaining: </div>
+                        <div id="minutes_a4" style="float:left">00</div>
+                        <div style="float:left">:</div>
+                        <div id="seconds_a4" style="float:left">00</div>
+                    </div>
+                </h:panelGroup>
+            </h:panelGrid>
+        </h:panelGrid>
+        <h:form>
+            <h:commandButton value="New Addresses">            
+                <f:ajax render="panelCacheId"/>
+            </h:commandButton>
+        </h:form>         
+    </h:body>
+</html>
