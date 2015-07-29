@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>GraphicImage_3</title>
+    </h:head>
+    <h:body>                                         
+        <h3>- an image provided from /resources (without library) - can be displayed just by using the name attribute (better rely on &lt;h:graphicImage&gt; instead)</h3>       
+        <o:graphicImage name="default/images/img_dog.png"/>         
+
+        <h3>- an image provided from /resources (with library) - can be displayed using the library and name attributes (better rely &lt;h:graphicImage&gt; instead)</h3>
+        <o:graphicImage library="default" name="images/img_tom.png"/>
+
+        <h3>- a random image provided from /resources (better rely on &lt;h:graphicImage&gt; instead)</h3>
+        <o:graphicImage library="default" name="images/img_#{imageIdsBean.id()}.png" />
+
+        <h3>- a list of images provided from /resources (better rely on use &lt;h:graphicImage&gt; instead)</h3>
+        <ui:repeat value="#{imageIdsBean.ids}" var="id">
+            <o:graphicImage library="default" name="images/img_#{id}.png" />
+        </ui:repeat>
+        
+        <h3>- an image provided from /resources as data URI (don't rely on &lt;h:graphicImage&gt;)</h3>
+        <o:graphicImage library="default" name="images/img_tom.png" dataURI="true"/>
+        
+        <h3>- an image provided from /resources with last modified explicitly set (don't rely on &lt;h:graphicImage&gt;)</h3>
+        <o:graphicImage library="default" name="images/img_tom.png" lastModified="#{startup.time}"/>
+        
+        <h3>- a SVG image provided from /resources (better rely on use &lt;h:graphicImage&gt; instead)</h3>
+        <o:graphicImage library="default" name="svgs/sample.svg"/>
+        
+        <h3>- a SVG image portion provided from /resources (don't rely on &lt;h:graphicImage&gt;)</h3>
+        <o:graphicImage library="default" name="svgs/sample.svg" fragment="svgView(viewBox(0,50,200,200))"/>
+        
+        <h3>- a SVG image provided from /resources as data URI (don't rely on &lt;h:graphicImage&gt;)</h3>
+        <o:graphicImage library="default" name="svgs/sample.svg" dataURI="true"/>
+
+    </h:body>
+</html>
