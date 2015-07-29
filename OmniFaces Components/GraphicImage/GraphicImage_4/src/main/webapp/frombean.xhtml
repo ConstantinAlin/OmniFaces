@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>GraphicImage_4</title>
+    </h:head>
+    <h:body> 
+        <h3>- SVG image stored in a folder</h3>
+        <o:graphicImage value="#{imageBean.imageAsByteArrayFromFolder()}" type="svg" lastModified="#{startup}" />
+        
+        <h3>- SVG image stored in a folder and served as data URI:</h3>
+        <o:graphicImage value="#{imageBean.imageAsByteArrayFromFolder()}" lastModified="#{startup}" dataURI="true" />
+
+        <h3>- SVG image stored in a folder and served using <code>fragment</code>:</h3>
+        <o:graphicImage value="#{imageBean.imageAsByteArrayFromFolder()}" type="svg" lastModified="#{startup}" fragment="svgView(viewBox(100,100,200,200))" />
+    </h:body>
+</html>
+
