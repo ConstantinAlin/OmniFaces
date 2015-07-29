@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Cache_7</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            var sTime = new Date().getTime();
+            var countDown = #{initParam['org.omnifaces.CACHE_SETTING_SESSION_TTL']};
+            var counter = setInterval(UpdateTime, '500');
+
+            function UpdateTime() {
+                var cTime = new Date().getTime();
+                var diff = cTime - sTime;
+                var seconds = countDown - Math.floor(diff / 1000);
+                if (seconds >= 0) {
+                    var minutes = Math.floor(seconds / 60);
+                    seconds -= minutes * 60;
+                    $("#minutes").text(minutes < 10 ? "0" + minutes : minutes);
+                    $("#seconds").text(seconds < 10 ? "0" + seconds : seconds);
+                } else {
+                    sTime = new Date().getTime();
+                    countDown = #{initParam['org.omnifaces.CACHE_SETTING_SESSION_TTL']};
+                    counter = setInterval(UpdateTime, '500');
+                    UpdateTime();
+                }
+            }
+            //]]>                                                 
+        </script>
+        <style>            
+            .red {                            
+                padding:10px 120px 10px 10px;
+                background-color: red;
+            }
+            .blue {                
+                padding:10px 120px 10px 10px;
+                background-color: blue;
+            }
+            .text{
+                font-size: 14px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h3>FIXED CACHE WITH SESSION TTL</h3>           
+        <hr/>       
+        Session TTL: #{initParam['org.omnifaces.CACHE_SETTING_SESSION_TTL']} seconds
+        <div id="countdown">            
+            <div style="float:left">Estimated remaining: </div>
+            <div id="minutes" style="float:left">00</div>
+            <div style="float:left">:</div>
+            <div id="seconds" style="float:left">00</div>
+        </div>
+        <br/>
+        <hr/>          
+        <h:panelGrid id="panelCacheId" columns="4" style="display:block">               
+            <o:cache key="address_1">                                                          
+                <h:outputText value="#{addressBean.generateAddress()}" styleClass="text" />
+            </o:cache>
+            <o:cache key="address_2">                                                          
+                <h:outputText value="#{addressBean.generateAddress()}" styleClass="text"/>
+            </o:cache>
+            <o:cache key="address_3">                                                          
+                <h:outputText value="#{addressBean.generateAddress()}" styleClass="text"/>
+            </o:cache>
+            <o:cache key="address_4">                                               
+                <h:outputText value="#{addressBean.generateAddress()}" styleClass="text"/>
+            </o:cache>                                
+            <h:panelGroup styleClass="#{addressBean.checkCache('address_1')}" layout="block">
+                <h:outputText value="address_1"/>
+            </h:panelGroup>
+            <h:panelGroup styleClass="#{addressBean.checkCache('address_2')}" layout="block">
+                <h:outputText value="address_2"/>
+            </h:panelGroup>
+            <h:panelGroup styleClass="#{addressBean.checkCache('address_3')}" layout="block">
+                <h:outputText value="address_3"/>
+            </h:panelGroup>
+            <h:panelGroup styleClass="#{addressBean.checkCache('address_4')}" layout="block">
+                <h:outputText value="address_4"/>
+            </h:panelGroup>            
+        </h:panelGrid>
+        <h:form>
+            <h:commandButton value="New Addresses">            
+                <f:ajax render="panelCacheId"/>
+            </h:commandButton>
+        </h:form>         
+    </h:body>
+</html>
