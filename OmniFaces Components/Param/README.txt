@@ -1,0 +1,2 @@
+The <o:param> is a component that extends the standard UIParameter to implement ValueHolder and thus support a Converter to convert the supplied value to string, if necessary.
+http://showcase.omnifaces.org/components/param
