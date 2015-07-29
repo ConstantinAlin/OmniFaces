@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>                
+        <f:viewParam name="phone" value="#{dataBean.phone}"/>
+        <f:viewParam name="prefix" value="005"/>        
+    </f:metadata>
+    <h:head>
+        <title>UseCase_Form_2</title> 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <h:outputScript target="body">            
+            $('#pingFormId').submit(function(e){            
+            $('#pingFormId').attr("action",'#{facesContext.application.viewHandler.
+                                              getBookmarkableURL(facesContext, view.viewId, null, true)}');                                   
+            });
+        </h:outputScript>
+    </h:head>    
+    <h:body>            
+        <h:panelGrid>
+            <hr/>
+            Ping #{prefix} - #{dataBean.phone} for #{dataBean.name} #{dataBean.surname}! 
+            <br/>
+            Payment: #{param.payment}
+            <br/>
+            Reverse Charge: #{param.reversecharge}
+            <hr/>
+            <h:form id="pingFormId">
+                <h:outputLabel for="nameId" value="Name:"/>
+                <h:inputText id="nameId" value="#{dataBean.name}" />
+                <h:outputLabel for="surnameId" value="Surname:"/>
+                <h:inputText id="surnameId" value="#{dataBean.surname}" />
+                <h:commandButton id="pingButtonId" value="Ping!"/>                                 
+            </h:form>
+        </h:panelGrid>              
+    </h:body>
+</html>
