@@ -1,7 +1,7 @@
 # OmniFaces
-[Mastering OmniFaces] (http://www.amazon.com/Mastering-OmniFaces-Anghel-Leonard/dp/1908689293) book source code.
+"Mastering OmniFaces" book source code.
 
-Mastering OmniFaces gives you the skills to write powerful JavaServer Faces applications using the OmniFaces utility library.
+[Mastering OmniFaces] (http://www.amazon.com/Mastering-OmniFaces-Anghel-Leonard/dp/1908689293) gives you the skills to write powerful JavaServer Faces applications using the OmniFaces utility library.
 Inside this book, you will learn how to write robust, reusable and easy to maintain JSF code with a high level of readability, effi ciency and performance. With Mastering OmniFaces you'll:
 
  * learn how to use OmniFaces artifacts in your JSF projects
