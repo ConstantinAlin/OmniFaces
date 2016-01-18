@@ -8,7 +8,8 @@ Inside this book, you will learn how to write robust, reusable and easy to maint
  * understand how OmniFaces/JSF is implemented and how it works internally
  * exploit the JSF API at a high level of development
  * explore and write JSF programming techniques and design patterns
- * develop JSF reusable code • identify and fix JSF gaps, pitfalls and bugs
+ * develop JSF reusable code
+ * identify and fix JSF gaps, pitfalls and bugs
  * increase your arsenal of JSF helpers with more than 300 utilities methods
  * learn how to write a considerable number of JSF custom artifacts types
  * push your JSF skills to the limit and become a cutting edge developer
