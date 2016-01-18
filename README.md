@@ -1,4 +1,4 @@
-# OmniFaces
+### OmniFaces
 "Mastering OmniFaces" book source code.
 
 [Mastering OmniFaces] (http://www.amazon.com/Mastering-OmniFaces-Anghel-Leonard/dp/1908689293) gives you the skills to write powerful JavaServer Faces applications using the OmniFaces utility library.
